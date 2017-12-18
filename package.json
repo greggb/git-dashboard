@@ -26,7 +26,8 @@
   "dependencies": {
     "blessed": "^0.1.81",
     "chalk": "^2.3.0",
-    "eslint": "^4.13.1"
+    "eslint": "^4.13.1",
+    "git-repo-info": "^1.4.1"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^12.1.0",
