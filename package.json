@@ -22,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/greggb/git-dashboard/issues"
   },
-  "homepage": "https://github.com/greggb/git-dashboard#readme"
+  "homepage": "https://github.com/greggb/git-dashboard#readme",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "chalk": "^2.3.0",
+    "eslint": "^4.13.1"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "prettier": "^1.9.2"
+  }
 }
