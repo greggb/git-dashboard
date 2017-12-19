@@ -1,19 +1,36 @@
 const blessed = require('blessed');
 const isEqual = require('lodash.isequal');
 
+const theme = require('../theme');
+
 class BranchList {
-  constructor(config = {}) {
-    const defaultStyles = {
-      fg: 'blue',
-      bg: 'black',
-      shadow: true,
+  constructor(props = {}) {
+    const defaultConfig = {
+      style: {
+        fg: theme.fg,
+        // bg: theme.bg,
+        selected: {
+          fg: theme.alt,
+          //   bg: theme.alt,
+          bold: true,
+        },
+        border: {
+          fg: theme.alt,
+          //   bg: theme.bg,
+        },
+      },
+      border: {
+        type: 'line',
+      },
+      width: '100%',
+      height: '100%',
+      left: 0,
+      top: 0,
+      tabSize: 0,
     };
-    this.listItems = config.listItems || [];
-    this.styles = Object.assign({}, defaultStyles, config.styles);
-    this.list = blessed.list({
-      items: this.listItems,
-      style: this.styles,
-    });
+    this.listItems = props.listItems || [];
+    const config = Object.assign({}, defaultConfig, { items: this.listItems });
+    this.list = blessed.list(config);
   }
   updateList(items) {
     if (!isEqual(this.listItems, items)) {

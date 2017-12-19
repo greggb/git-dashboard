@@ -2,7 +2,9 @@ const blessed = require('blessed');
 const repositoryInfo = require('git-info');
 const isEqual = require('lodash.isequal');
 
-const POLL_INTERVAL = 500;
+const BranchList = require('./panels/BranchList');
+
+const POLL_INTERVAL = 5000;
 // git-info API: https://github.com/michalbe/git-info#api
 const API_FIELDS = [
   'author', // top author of the repo
@@ -28,6 +30,8 @@ class Dashboard {
       title,
       smartCSR: true,
       fullUnicode: true,
+      autoPadding: true,
+      dockBorders: true,
     });
     this.render = this.render.bind(this);
     this.addEventHandlers = this.addEventHandlers.bind(this);
@@ -74,20 +78,12 @@ class Dashboard {
     });
   }
   layout() {
-    const list = blessed.list({
-      items: this.repoInfo.branches,
-      style: {
-        fg: 'blue',
-        bg: 'black',
-        transparent: false,
-        scrollbar: {
-          bg: 'blue',
-        },
-      },
+    const { branch, branches } = this.repoInfo;
+    const List = new BranchList({
+      listItems: Array.isArray(branches) ? branches : [branches],
     });
-    const currentBranch = list.getItemIndex(this.repoInfo.branch);
-    list.select(currentBranch);
-    this.screen.append(list);
+    List.selectItem(branch);
+    this.screen.append(List.getList());
   }
 }
 // kick it off
