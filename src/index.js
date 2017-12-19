@@ -2,6 +2,7 @@ const blessed = require('blessed');
 const repositoryInfo = require('git-info');
 const isEqual = require('lodash.isequal');
 
+const theme = require('./theme');
 const BranchList = require('./panels/BranchList');
 
 const POLL_INTERVAL = 5000;
@@ -78,12 +79,36 @@ class Dashboard {
     });
   }
   layout() {
-    const { branch, branches } = this.repoInfo;
+    const {
+      author, authorDateRelative, branch, branches,
+    } = this.repoInfo;
     const List = new BranchList({
       listItems: Array.isArray(branches) ? branches : [branches],
     });
     List.selectItem(branch);
     this.screen.append(List.getList());
+    const commitMessage = `Last commit by ${author}, ${authorDateRelative}`;
+    const infoBox = blessed.box({
+      content: commitMessage,
+      height: '50%',
+      width: '50%',
+      left: '50%',
+      top: 0,
+      style: {
+        fg: theme.fg,
+        selected: {
+          fg: theme.alt,
+          bold: true,
+        },
+        border: {
+          fg: theme.alt,
+        },
+      },
+      border: {
+        type: 'line',
+      },
+    });
+    this.screen.append(infoBox);
   }
 }
 // kick it off
