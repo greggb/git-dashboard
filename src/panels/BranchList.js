@@ -8,25 +8,22 @@ class BranchList {
     const defaultConfig = {
       style: {
         fg: theme.fg,
-        // bg: theme.bg,
         selected: {
           fg: theme.alt,
-          //   bg: theme.alt,
           bold: true,
         },
         border: {
           fg: theme.alt,
-          //   bg: theme.bg,
         },
       },
       border: {
         type: 'line',
       },
-      width: '100%',
-      height: '100%',
+      width: '50%',
+      height: '50%',
       left: 0,
       top: 0,
-      tabSize: 0,
+      scrollable: true,
     };
     this.listItems = props.listItems || [];
     const config = Object.assign({}, defaultConfig, { items: this.listItems });
