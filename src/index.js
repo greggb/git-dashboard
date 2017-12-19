@@ -87,7 +87,7 @@ class Dashboard {
     });
     List.selectItem(branch);
     this.screen.append(List.getList());
-    const commitMessage = `Last commit by ${author}, ${authorDateRelative}`;
+    const commitMessage = `Last commit: ${authorDateRelative}.`;
     const infoBox = blessed.box({
       content: commitMessage,
       height: '50%',
