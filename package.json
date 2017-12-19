@@ -27,11 +27,17 @@
     "blessed": "^0.1.81",
     "chalk": "^2.3.0",
     "eslint": "^4.13.1",
-    "git-repo-info": "^1.4.1"
+    "git-info": "^1.1.0",
+    "lodash.isequal": "^4.5.0"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "prettier": "^1.9.2"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
